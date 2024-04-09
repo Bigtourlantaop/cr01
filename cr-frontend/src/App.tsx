@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-
+import { Course } from './interfaces';
+import CourseItem from './CourseItem.tsx';
 
 const App = () => {
-  const [courses, setCourses] = useState<any[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/courses')
@@ -17,39 +18,12 @@ const App = () => {
     <div className ="App">
       <ul>
       {courses.map((item) => (
-        <li key = {item.id}>{item.number} - {item.title}</li>
+        <CourseItem key={item.id} course={item} />
       ))}
       </ul>
     </div>
   );
 } 
-
-
-// type AppState = {
-//   message: string;
-// };
-
-// class App extends React.Component<{}, AppState> {
-//   state: AppState = {
-//     message: 'Default message',
-//   };
-
-//   componentDidMount() {
-//     fetch('http://localhost:3000/courses')
-//       .then(res => res.json())
-//       .then(obj => {
-//         this.setState({message: obj.message});
-//       });
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         {this.state.message}
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
 
