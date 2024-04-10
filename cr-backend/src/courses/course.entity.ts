@@ -11,6 +11,6 @@ export class Course {
 
     @Column()
     title: string;
-};
+}
 
 export default Course;
